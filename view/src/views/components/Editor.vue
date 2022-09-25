@@ -5,7 +5,7 @@
           height="750"
           language="go"
           @change="onChange"
-          value="value"
+          :value="value"
       ></MonacoEditor>
   </div>
 </template>
