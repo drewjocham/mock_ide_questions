@@ -32,10 +32,8 @@ export default class Editor extends Vue {
    import "fmt"
 
    func main() {
-       fmt.println("HelloWorld")
+       fmt.println("Hello World")
    }`
-
-
 
     onChange() {
         console.log("value");
