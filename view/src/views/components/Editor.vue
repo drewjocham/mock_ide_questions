@@ -14,7 +14,7 @@
 import {Options, Vue} from "vue-class-component";
 import MonacoEditor from "monaco-editor-vue3";
 
-
+// https://www.npmjs.com/package/monaco-editor-vue3
 @Options({
   components: {
       MonacoEditor,
@@ -36,7 +36,7 @@ export default class Editor extends Vue {
    }`
 
     onChange() {
-        console.log("value");
+
     }
 
     async mounted() {

@@ -1,13 +1,21 @@
 <template>
   <div class="justify-center flex bg-yellow-300 items-center h-screen">
     <div class="text-4xl">
-      Hello 👋🏼 {{ msg }}
+        Hello 👋🏼 {{ msg }}
+        <button @click="$router.push('test')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+            Button
+        </button>
 
-      <button @click="$router.push('test')" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-        Button
-      </button>
+        <div class="flex flex-row ...">
+            <div class="pr-16 font-serif text-black">
+                <FileTree/>
+            </div>
 
-      <Editor/>
+            <div>
+                <Editor/>
+            </div>
+        </div>
+
     </div>
   </div>
 </template>
@@ -15,9 +23,10 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Editor from "@/views/components/Editor.vue";
+import FileTree from "@/views/components/FileTree.vue";
 
 @Options({
-  components: {Editor},
+  components: {FileTree, Editor},
   props: {
     msg: String
   }
