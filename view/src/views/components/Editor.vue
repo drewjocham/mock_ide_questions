@@ -4,9 +4,12 @@
           width="900"
           height="750"
           language="go"
-          @change="onChange"
+          @change="onChange($event)"
           :value="value"
       ></MonacoEditor>
+    <button v-on:click="submit()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      Button
+    </button>
   </div>
 </template>
 
@@ -26,6 +29,8 @@ import MonacoEditor from "monaco-editor-vue3";
 })
 export default class Editor extends Vue {
 
+  code = ""
+
     value = `
    package main
 
@@ -35,8 +40,16 @@ export default class Editor extends Vue {
        fmt.println("Hello World")
    }`
 
-    onChange() {
+    onChange(event: any) {
+      this.code = event
+    }
 
+    submit() {
+      if (this.code.length <= 0) {
+        console.log("output:" + this.value)
+      } else {
+        console.log("output:" + this.code)
+      }
     }
 
     async mounted() {

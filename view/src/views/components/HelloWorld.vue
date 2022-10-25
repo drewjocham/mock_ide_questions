@@ -7,10 +7,6 @@
         </button>
 
         <div class="flex flex-row ...">
-            <div class="pr-16 font-serif text-black">
-                <FileTree/>
-            </div>
-
             <div>
                 <Editor/>
             </div>
@@ -23,10 +19,9 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component';
 import Editor from "@/views/components/Editor.vue";
-import FileTree from "@/views/components/FileTree.vue";
 
 @Options({
-  components: {FileTree, Editor},
+  components: {Editor},
   props: {
     msg: String
   }
