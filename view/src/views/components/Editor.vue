@@ -52,10 +52,6 @@ export default class Editor extends Vue {
       }
     }
 
-    async mounted() {
-        // add parameters here
-    }
-
 }
 
 </script>
