@@ -1,0 +1,37 @@
+syntax = "proto3";
+
+import "google/protobuf/any.proto";
+
+option go_package = "pkg/api";
+
+service ApiService {
+    rpc GenerateQuestions(GenerateQuestionsRequest) returns (GenerateQuestionsResponse) {}
+    rpc SubmitMultipleChoiceQuestion(MultipleChoiceQuestionRequest) returns (MultipleChoiceQuestionResponse) {}
+    rpc SubmitCode(CodeRequest) returns (CodeResponse){}
+}
+
+message MultipleChoiceQuestionRequest {
+    string id = 1;
+    string questionId = 2;
+}
+
+message MultipleChoiceQuestionResponse {
+
+}
+
+message CodeRequest {
+    string id = 1;
+    string codeQuestionId = 2;
+}
+
+message CodeResponse {
+
+}
+
+message GenerateQuestionsRequest {
+
+}
+
+message GenerateQuestionsResponse {
+
+}

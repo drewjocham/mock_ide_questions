@@ -46,7 +46,7 @@ export default class Editor extends Vue {
    import "fmt"
 
    func main() {
-       fmt.println("Hello World")
+       fmt.Println("Hello World")
    }`
 
     onChange(event: any) {
@@ -56,17 +56,10 @@ export default class Editor extends Vue {
     submit() {
       if (this.code.length <= 0) {
         this.c.source_code = this.value
-        //console.log("output:" + this.value)
-        console.log(JSON.stringify(this.c))
         api.submitCode(this.c)
-
-        //api.submitCode(btoa(this.value))
       } else {
-        //console.log("output:" + this.code)
         this.c.source_code = this.code
-        console.log(JSON.stringify(this.c))
         api.submitCode(this.c)
-        //api.submitCode(btoa(this.code))
       }
     }
 
