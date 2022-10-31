@@ -9,31 +9,38 @@ const apiClient: AxiosInstance = axios.create({
         'X-RapidAPI-Key': '08f852edfamsh149af67cd3c6cfap1388c3jsn22fb3e2dc084',
         'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
     },
-    params: {base64_encoded: 'true', fields: '*'},
+    params: {base64_encoded: 'true', fields: 'stdout'},
 });
 
+function sleep(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 export const api = {
+
+
 
     // https://www.freecodecamp.org/news/how-to-build-react-based-code-editor/
     async submitCode(code: Code) {
         code.language_id = 60
         code.stdin = "SnVkZ2Uw"
         code.source_code = btoa(code.source_code)
-        apiClient.post<Token>(`https://judge0-ce.p.rapidapi.com/submissions?language_id=${code.language_id}&source_code=${code.source_code}&stdin=SnVkZ2Uw`)
-        .then(function (response) {
-            console.log("res.data", response.data.token);
-        }).then(function (token) {
-            console.log("token", token); // <---- empty
-            `https://judge0-ce.p.rapidapi.com/submissions/${token}`  // <---- get request
-        }).then(function (response) {
-            console.log("res.data", response);
-        }).then(function (response  ) {
-            // here I will need a model
-        })
-        .catch((err) => {
-            const error = err.response ? err.response.data : err;
-            console.log("error" + error);
-        })
+
+        try {
+            await apiClient.post<Token>(`https://judge0-ce.p.rapidapi.com/submissions?language_id=${code.language_id}&source_code=${code.source_code}`
+            ).then(async (response) => {
+                console.log("token", response.data.token);
+                await apiClient.get<OutputResponse>(`https://judge0-ce.p.rapidapi.com/submissions/${response.data.token}`)
+                    .then(async (outputResponse) => {
+                        console.log("output:", atob(outputResponse.data.stdout))
+                    })
+            })
+        } catch (err) {
+            console.log("error" + err);
+        }
+
     }
+
+
 
 }

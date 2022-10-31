@@ -1,0 +1,3 @@
+interface OutputResponse {
+    stdout: string
+}
