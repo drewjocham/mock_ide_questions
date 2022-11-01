@@ -16,6 +16,8 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
 import MonacoEditor from "monaco-editor-vue3";
+import {api} from "@/lib/api";
+import {Code} from "@/model/code";
 
 // https://www.npmjs.com/package/monaco-editor-vue3
 @Options({
@@ -29,7 +31,14 @@ import MonacoEditor from "monaco-editor-vue3";
 })
 export default class Editor extends Vue {
 
+  defaultCode: Code = {
+    language_id: 0,
+    source_code: "",
+    stdin: ""
+  }
+
   code = ""
+  private c: Code = this.defaultCode;
 
     value = `
    package main
@@ -46,9 +55,18 @@ export default class Editor extends Vue {
 
     submit() {
       if (this.code.length <= 0) {
-        console.log("output:" + this.value)
+        this.c.source_code = this.value
+        //console.log("output:" + this.value)
+        console.log(JSON.stringify(this.c))
+        api.submitCode(this.c)
+
+        //api.submitCode(btoa(this.value))
       } else {
-        console.log("output:" + this.code)
+        //console.log("output:" + this.code)
+        this.c.source_code = this.code
+        console.log(JSON.stringify(this.c))
+        api.submitCode(this.c)
+        //api.submitCode(btoa(this.code))
       }
     }
 
