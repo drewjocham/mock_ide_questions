@@ -1,22 +1,31 @@
 syntax = "proto3";
 
-import "google/protobuf/any.proto";
-
 option go_package = "pkg/api";
 
 service ApiService {
     rpc GenerateQuestions(GenerateQuestionsRequest) returns (GenerateQuestionsResponse) {}
     rpc SubmitMultipleChoiceQuestion(MultipleChoiceQuestionRequest) returns (MultipleChoiceQuestionResponse) {}
     rpc SubmitCode(CodeRequest) returns (CodeResponse){}
+    rpc Test(TestRequest) returns (TestResponse){}
+}
+
+message TestRequest {
+    string name = 1;
+}
+
+message TestResponse {
+    string name = 1;
 }
 
 message MultipleChoiceQuestionRequest {
     string id = 1;
     string questionId = 2;
+    string answer = 3;
 }
 
 message MultipleChoiceQuestionResponse {
-
+    string id = 1;
+    string isCorrect = 2;
 }
 
 message CodeRequest {
@@ -25,13 +34,13 @@ message CodeRequest {
 }
 
 message CodeResponse {
-
+    string id = 1;
 }
 
 message GenerateQuestionsRequest {
-
+    string question = 1;
 }
 
 message GenerateQuestionsResponse {
-
+    string id = 1;
 }
