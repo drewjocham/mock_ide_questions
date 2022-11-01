@@ -1,1 +1,4 @@
-     .idea
+pkg/api/**
+vendor
+go.mod
+go.sum

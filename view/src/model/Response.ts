@@ -1,3 +1,0 @@
-interface Res {
-    token: string
-}
