@@ -2,3 +2,4 @@ pkg/api/**
 vendor
 go.mod
 go.sum
+.idea

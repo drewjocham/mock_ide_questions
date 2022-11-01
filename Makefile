@@ -41,7 +41,7 @@ proto-old: ## Generate protobuf code
 		  --plugin=protoc-gen-grpc=${PROJ_PATH}/form/node_modules/.bin/grpc_tools_node_protoc_plugin \
 		  --plugin=protoc-gen-ts=${PROJ_PATH}/form/proto \
 		  --js_out=import_style=commonjs:${PROJ_PATH}/form/proto \
-          --ts_out=service=grpc-web:${PROJ_PATH}/form/proto \
+          --ts_out=service=grpc-web:${PROJ_PATH}/form/proto
 
 
 #--plugin=${PROJ_PATH}/view/node_modules/.bin/protoc-gen-ts-proto \
