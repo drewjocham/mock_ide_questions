@@ -13,7 +13,7 @@ const deps = {
     tokenKey: TOKEN_KEY,
     getMetadata,
     proto: {
-        //apiClient:
+        apiClient: "localhost:8082"
     }
 }
 

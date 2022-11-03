@@ -2,18 +2,28 @@ package main
 
 import (
 	"context"
+	"fmt"
+	"github.com/interviews/api/internal/config"
 	"github.com/interviews/pkg/api"
 	"golang.org/x/sync/errgroup"
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
+	"net"
+	"strconv"
 )
 
 func startServer() error {
 	ctx, cancel := context.WithCancel(context.Background())
 	defer cancel()
 
+	cfg, err := config.NewConfig()
+
 	g, _ := errgroup.WithContext(ctx)
 
-	apiConn, err := grpc.Dial("tcp", grpc.WithChainUnaryInterceptor())
+	apiConn, err := grpc.Dial(
+		cfg.Server.ServerAddress,
+		grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithChainUnaryInterceptor())
 
 	api.NewApiServiceClient(apiConn)
 
@@ -21,6 +31,19 @@ func startServer() error {
 		return err
 	}
 	defer apiConn.Close()
+
+	listen, err := net.Listen("tcp", ":"+strconv.Itoa(cfg.Server.GRPCPort))
+	if err != nil {
+		return err
+	}
+
+	server := grpc.NewServer(grpc.ChainUnaryInterceptor())
+
+	g.Go(func() error {
+		fmt.Println("Starting server on port", strconv.Itoa(cfg.Server.GRPCPort))
+
+		return server.Serve(listen)
+	})
 
 	return g.Wait()
 
