@@ -16,8 +16,9 @@
 <script lang="ts">
 import {Options, Vue} from "vue-class-component";
 import MonacoEditor from "monaco-editor-vue3";
-import {api} from "@/lib/api";
 import {Code} from "@/model/code";
+import {api} from "@/lib/api";
+
 
 // https://www.npmjs.com/package/monaco-editor-vue3
 @Options({
