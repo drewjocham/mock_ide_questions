@@ -24,7 +24,6 @@ mod-vendor: ## Download, verify and vendor dependencies
 	go mod verify
 	go mod vendor
 
-
 .PHONY: proto
 proto: ## Generate protobuf code
 # Compile proto files inside the project.
@@ -32,10 +31,10 @@ proto: ## Generate protobuf code
 
 	protoc --proto_path=${PROJ_PATH}/proto \
 		--plugin=protoc-gen-grpc=${PROJ_PATH}/form/node_modules/.bin/grpc_tools_node_protoc_plugin \
-        --plugin=protoc-gen-ts=${PROJ_PATH}/form//node_modules/.bin/protoc-gen-ts \
-        --js_out=import_style=commonjs:${PROJ_PATH}/form/proto \
-        --grpc_out=grpc_js:${PROJ_PATH}/form/proto \
-        --ts_out=grpc_js:${PROJ_PATH}/form/proto \
+        --plugin=protoc-gen-ts=${PROJ_PATH}/form/node_modules/.bin/protoc-gen-ts \
+        --js_out=import_style=commonjs,binary:${PROJ_PATH}/form/src/proto \
+        --grpc_out=${PROJ_PATH}/form/src/proto \
+        --ts_out=${PROJ_PATH}/form/src/proto \
         -I ${PROJ_PATH}/proto \
          ${PROJ_PATH}/proto/*.proto
 
