@@ -1,6 +1,6 @@
 PROJ_PATH=${CURDIR}
-UID?=${shell id -u}
-GID?=${shell id -g}
+PROTO_DEST=./src/proto
+
 
 .PHONY: Install form dependencies
 .install-form:
@@ -27,14 +27,13 @@ mod-vendor: ## Download, verify and vendor dependencies
 .PHONY: proto
 proto: ## Generate protobuf code
 # Compile proto files inside the project.
-	protoc api.proto --proto_path=${PROJ_PATH}/proto --go_out=. --go-grpc_out=.
+	# protoc api.proto --proto_path=${PROJ_PATH}/proto --go_out=. --go-grpc_out=.
 
-	protoc --proto_path=${PROJ_PATH}/proto \
-		--plugin=protoc-gen-grpc=${PROJ_PATH}/form/node_modules/.bin/grpc_tools_node_protoc_plugin \
-        --plugin=protoc-gen-ts=${PROJ_PATH}/form/node_modules/.bin/protoc-gen-ts \
-        --js_out=import_style=commonjs,binary:${PROJ_PATH}/form/src/proto \
-        --grpc_out=${PROJ_PATH}/form/src/proto \
-        --ts_out=${PROJ_PATH}/form/src/proto \
+	# JavaScript code generation
+	cd form && yarn run grpc_tools_node_protoc \
+        --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
+        --ts_out=grpc_js:${PROTO_DEST} \
+        --js_out=import_style=commonjs,binary:${PROTO_DEST} \
+        --grpc_out=grpc_js:${PROTO_DEST} \
         -I ${PROJ_PATH}/proto \
-         ${PROJ_PATH}/proto/*.proto
-
+        ${PROJ_PATH}/proto/*.proto
