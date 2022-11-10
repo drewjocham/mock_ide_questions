@@ -1,5 +1,7 @@
 import axios, {AxiosInstance} from "axios";
 import {Code} from "@/model/code";
+import grpcClient from "../../client";
+import {TestRequest} from "@/proto/api_pb";
 
 //axios.defaults.baseURL = 'https://judge0-ce.p.rapidapi.com/submissions'
 
@@ -34,8 +36,35 @@ export const api = {
         } catch (err) {
             console.log("error" + err);
         }
-
     },
 
+    async getTest(): Promise<TestRequest> {
+        const req = new TestRequest();
+        req.setName("Drew");
+
+        return new Promise<TestRequest>((resolve, reject) => {
+            grpcClient.test(req, (err, res) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve(res);
+            });
+        });
+    },
+
+    async testMethod() {
+        const req = new TestRequest();
+        req.setName("Drew");
+
+        grpcClient.test(req, (err, res) => {
+            if(!err) {
+                console.info("Greeting:", res.getName());
+            } else {
+                console.error("Error:", err.message);
+            }
+        })
+    }
 
 }
+
+

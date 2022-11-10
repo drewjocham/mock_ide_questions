@@ -14,6 +14,7 @@
         "useDefineForClassFields": true,
         "sourceMap": true,
         "baseUrl": ".",
+        "outDir": "./dist",
         "types": [
             "webpack-env"
         ],
@@ -30,9 +31,11 @@
         ]
     },
     "include": [
+        "./**/*",
         "src/**/*",
-        "tests/**/*",
-
     ],
-    "exclude": ["node_modules"]
+    "exclude": [
+        "node_modules",
+        ".src/**"
+    ]
 }

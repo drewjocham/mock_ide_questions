@@ -27,9 +27,10 @@ mod-vendor: ## Download, verify and vendor dependencies
 .PHONY: proto
 proto: ## Generate protobuf code
 # Compile proto files inside the project.
-	# protoc api.proto --proto_path=${PROJ_PATH}/proto --go_out=. --go-grpc_out=.
+	protoc api.proto --proto_path=${PROJ_PATH}/proto --go_out=. --go-grpc_out=.
 
 	# JavaScript code generation
+	# https://medium.com/blokur/how-to-implement-a-grpc-client-and-server-in-typescript-fa3ac807855e
 	cd form && yarn run grpc_tools_node_protoc \
         --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
         --ts_out=grpc_js:${PROTO_DEST} \

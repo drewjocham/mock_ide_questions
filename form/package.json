@@ -4,8 +4,9 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "build": "yarn run tsc",
+    "start": "PORT=6789 node ./dist/client.js"
   },
   "dependencies": {
     "@codemirror/lang-html": "^6.1.1",

@@ -58,9 +58,11 @@ export default class Editor extends Vue {
       if (this.code.length <= 0) {
         this.c.source_code = this.value
         api.submitCode(this.c)
+          api.testMethod()
       } else {
         this.c.source_code = this.code
         api.submitCode(this.c)
+          api.testMethod()
       }
     }
 
