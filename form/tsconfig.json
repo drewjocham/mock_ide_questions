@@ -12,8 +12,10 @@
         "allowSyntheticDefaultImports": true,
         "forceConsistentCasingInFileNames": true,
         "useDefineForClassFields": true,
-        "sourceMap": true,
-        "baseUrl": ".",
+        "noImplicitAny": false,
+        "strictNullChecks": false,
+        "baseUrl": "./",
+        "typeRoots": ["node_modules/@types"],
         "outDir": "./dist",
         "types": [
             "webpack-env"
