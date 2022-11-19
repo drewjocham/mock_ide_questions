@@ -2,11 +2,18 @@ syntax = "proto3";
 
 option go_package = "pkg/api";
 
+import "google/api/annotations.proto";
+
 service ApiService {
     rpc GenerateQuestions(GenerateQuestionsRequest) returns (GenerateQuestionsResponse) {}
     rpc SubmitMultipleChoiceQuestion(MultipleChoiceQuestionRequest) returns (MultipleChoiceQuestionResponse) {}
     rpc SubmitCode(CodeRequest) returns (CodeResponse){}
-    rpc Test(TestRequest) returns (TestResponse){}
+    rpc Test(TestRequest) returns (TestResponse){
+        option (google.api.http) = {
+            get: "/v1/test"
+            body: "*"
+        };
+    }
 }
 
 message TestRequest {

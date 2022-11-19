@@ -24,6 +24,7 @@ export const api = {
         code.source_code = btoa(code.source_code)
 
         try {
+            
             await judgeClient.post<Token>(`https://judge0-ce.p.rapidapi.com/submissions?language_id=${code.language_id}&source_code=${code.source_code}`
             ).then(async (response) => {
                 console.log("token", response.data.token);
