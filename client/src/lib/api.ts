@@ -4,7 +4,6 @@ import {TestRequest, TestResponse} from "@/proto/api_pb";
 const grpcClient: AxiosInstance = axios.create({
     headers: {
         'content-type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
     },
     //params: {base64_encoded: 'true', fields: 'stdout'},
 });
@@ -12,26 +11,28 @@ const grpcClient: AxiosInstance = axios.create({
 export const api = {
 
     async getTest() {
-        const req = new TestRequest();
-        req.setName("Mike");
-        const response = new TestResponse()
+
         try{
-            console.log("trying 1")
-            grpcClient.get<TestRequest>("http://localhost:8080/v1/test")
-                .then(async (res: AxiosResponse<TestResponse>) => {
-                    console.log("output:", res.data.getName())
-                    response.setName(res.data.getName())
+            grpcClient.get<TestResponse>("http://localhost:8080/v1/test")
+                .then(res => {
+                    console.log("output:", res.data)
                 })
         }catch (err) {
             console.log("error" + err);
         }
-        return response.getName()
+        return null
     }
 
     /*
     async getTest(): Promise<TestRequest> {
         const req = new TestRequest();
         req.setName("Mike");
+
+                   grpcClient.get<TestRequest>("http://localhost:8080/v1/test")
+                .then(async (res: AxiosResponse<TestResponse>) => {
+                    console.log("output:", res.data.getName())
+                    response.setName(res.data.getName())
+                })
 
         return new Promise<TestRequest>((resolve, reject) => {
             grpcClient.test(req, (err, res) => {

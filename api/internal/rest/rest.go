@@ -4,6 +4,7 @@ import (
 	"context"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	"github.com/interviews/pkg/api"
+	"github.com/rs/cors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/credentials/insecure"
@@ -55,7 +56,7 @@ func RunHttpServer(server *http.Server, httpEndpoint, grpcEndpoint, swaggerPath 
 	swMux := http.NewServeMux()
 	swMux.Handle("/", mux)
 
-	server.Handler = enableCors(swMux)
+	server.Handler = cors.AllowAll().Handler(swMux)
 
 	serveSwagger(swMux, swaggerPath)
 
@@ -67,12 +68,4 @@ func serveSwagger(mux *http.ServeMux, swaggerPath string) {
 	fileServer := http.FileServer(http.Dir(swaggerPath))
 	prefix := "/swagger-ui"
 	mux.Handle(prefix, http.StripPrefix(prefix, fileServer))
-}
-
-func enableCors(h http.Handler) http.Handler {
-	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "*")
-
-		h.ServeHTTP(w, r)
-	})
 }
