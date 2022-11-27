@@ -17,6 +17,7 @@ func (s *apiServiceServer) Test(context context.Context, req *api.TestRequest) (
 	println(req.Name)
 
 	return &api.TestResponse{
-		Name: "Billy Bob",
+		Name: "Drew Jocham",
+		Age:  "37",
 	}, nil
 }

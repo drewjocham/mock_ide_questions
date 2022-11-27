@@ -11,17 +11,16 @@ const grpcClient: AxiosInstance = axios.create({
 export const api = {
 
     async getTest() {
-
         try{
-            grpcClient.get<TestResponse>("http://localhost:8080/v1/test")
+            return grpcClient.get<TestResponse>("http://localhost:8080/v1/test")
                 .then(res => {
-                    console.log("output:", res.data)
+                    return res.data
                 })
         }catch (err) {
             console.log("error" + err);
         }
-        return null
-    }
+
+    },
 
     /*
     async getTest(): Promise<TestRequest> {

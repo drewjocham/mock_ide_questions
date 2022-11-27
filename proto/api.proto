@@ -21,6 +21,7 @@ message TestRequest {
 
 message TestResponse {
     string name = 1;
+    string age = 2;
 }
 
 message MultipleChoiceQuestionRequest {
