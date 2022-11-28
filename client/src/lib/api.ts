@@ -1,5 +1,5 @@
-import axios, {AxiosInstance, AxiosResponse} from "axios";
-import {TestRequest, TestResponse} from "@/proto/api_pb";
+import axios, {AxiosInstance} from "axios";
+import {TestResponse} from "@/proto/api_pb";
 
 const grpcClient: AxiosInstance = axios.create({
     headers: {
@@ -19,7 +19,6 @@ export const api = {
         }catch (err) {
             console.log("error" + err);
         }
-
     },
 
     /*
