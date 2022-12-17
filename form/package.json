@@ -31,7 +31,7 @@
     "protoc-gen-ts": "^0.8.5",
     "protoc-gen-grpc": "^2.0.3",
     "vscode-ws-jsonrpc": "^2.0.0",
-    "vue": "^3.2.13",
+    "vue": "^3.2.45",
     "vue-class-component": "^8.0.0-0",
     "vue-codemirror": "^6.1.1",
     "vue-monaco": "^1.2.2",
