@@ -25,7 +25,7 @@
     "monaco-editor-webpack-plugin": "^7.0.1",
     "monaco-languageclient": "^4.0.0",
     "monaco-with-tree": "^1.0.6",
-    "@protobuf-ts/protoc": "^2.8.1",
+    "@protobuf-ts/protoc": "^2.8.2",
     "@types/google-protobuf": "^3.15.6",
     "google-protobuf": "^3.21.0",
     "protoc-gen-ts": "^0.8.5",
