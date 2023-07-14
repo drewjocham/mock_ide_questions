@@ -25,7 +25,7 @@
     "monaco-editor-webpack-plugin": "^7.0.1",
     "monaco-languageclient": "^4.0.0",
     "monaco-with-tree": "^1.0.6",
-    "ts-proto": "^1.131.0",
+    "ts-proto": "^1.153.1",
     "ts-protoc-gen": "^0.15.0",
     "vscode-ws-jsonrpc": "^2.0.0",
     "vue": "^3.2.13",
